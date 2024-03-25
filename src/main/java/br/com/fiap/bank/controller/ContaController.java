@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.bank.model.Conta;
+import br.com.fiap.bank.model.conta.Conta;
+import br.com.fiap.bank.model.movimentacao.Movimentacao;
 import br.com.fiap.bank.service.ContaService;
 
 @RestController
@@ -46,4 +47,22 @@ public class ContaController {
     public void destroy(@PathVariable Long id) {
         service.destroy(id);
     }
+
+    @PostMapping("{id}/deposito")
+    public Conta depositar(@PathVariable Long id, @RequestBody Movimentacao movimentacao){
+        return service.depositar(id, movimentacao.valor());
+    }
+
+    @PostMapping("{id}/saque")
+    public Conta sacar(@PathVariable Long id, @RequestBody Movimentacao movimentacao){
+        return service.saque(id, movimentacao.valor());
+    }
+
+    @PostMapping("{idOrigem}/pix/{idDestino}")
+    public ResponseEntity<Conta> pix(@PathVariable Long idOrigem, @PathVariable Long idDestino, @RequestBody Movimentacao movimentacao){
+        Conta contaAtualizada = service.pix(idOrigem, idDestino, movimentacao.valor());
+        return ResponseEntity.ok(contaAtualizada);
+}
+
+
 }

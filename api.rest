@@ -16,6 +16,21 @@ Content-Type: application/json
     "tipo": "CORRENTE"
 }
 
+###
+
+POST http://localhost:8080/conta
+Content-Type: application/json
+
+{
+    "numero": 543535333,
+    "agencia": 12321343423,
+    "nome": "Renato Trezoitão",
+    "cpf": "941.218.550-27",
+    "dataAbertura": "2020-02-20",
+    "saldo": 32312.00,
+    "tipo": "CORRENTE"
+}
+
 
 ###
 GET http://localhost:8080/conta/1
@@ -34,3 +49,31 @@ GET http://localhost:8080/conta/313313213131/1
 ###
 
 DELETE http://localhost:8080/conta/1
+
+
+###
+
+POST http://localhost:8080/conta/1/deposito
+Content-Type: application/json
+
+{
+    "valor": 100
+}
+
+###
+
+POST http://localhost:8080/conta/1/saque
+Content-Type: application/json
+
+{
+    "valor": 100
+}
+
+###
+
+POST http://localhost:8080/conta/1/pix/2
+Content-Type: application/json
+
+{
+    "valor": 1200
+}

@@ -1,4 +1,4 @@
-package br.com.fiap.bank.model;
+package br.com.fiap.bank.model.conta;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
