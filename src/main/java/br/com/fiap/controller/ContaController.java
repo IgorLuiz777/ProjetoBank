@@ -1,7 +1,6 @@
 package br.com.fiap.controller;
 
 import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import br.com.fiap.bank.model.Conta;
 import br.com.fiap.repository.ContaRepository;
@@ -54,11 +51,11 @@ public class ContaController {
         .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("{id}/{agencia}")
-    public ResponseEntity<Conta> show(@PathVariable Long id, String agencia){
+    @GetMapping("{agencia}/{id}")
+    public ResponseEntity<Conta> show(@PathVariable Long agencia, @PathVariable Long id){
  
         return contaRepository
-        .findByIdAgencia(id, agencia)
+        .findByAgenciaAndId(agencia, id)
         .map(ResponseEntity::ok)
         .orElse(ResponseEntity.notFound().build());
     }
@@ -73,7 +70,7 @@ public class ContaController {
                 contaRepository.save(conta);
             }
             });
-  }
+    }
     
 
 

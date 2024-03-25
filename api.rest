@@ -1,0 +1,36 @@
+GET http://localhost:8080/
+
+
+###
+
+POST http://localhost:8080/conta
+Content-Type: application/json
+
+{
+    "numero": 42342442,
+    "agencia": 313313213131,
+    "nome": "Renato Cariani",
+    "cpf": "555.874.950-43",
+    "dataAbertura": "2024-03-20",
+    "saldo": 177323.00,
+    "tipo": "CORRENTE"
+}
+
+
+###
+GET http://localhost:8080/conta/1
+
+
+###
+
+GET http://localhost:8080/conta/cpf/555.874.950-43
+
+
+###
+
+GET http://localhost:8080/conta/313313213131/1
+
+
+###
+
+DELETE http://localhost:8080/conta/1

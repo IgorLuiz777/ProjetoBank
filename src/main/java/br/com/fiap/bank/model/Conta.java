@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
@@ -26,19 +27,20 @@ public class Conta {
     @Column(unique = true)
     private Long numero;
 
-    private String agencia;
+    @Positive
+    private Long agencia;
 
-    @NotBlank
+    @NotBlank(message = "O nome deve ser obrigatório!!")
     private String nome;
 
-    @CPF
+    @CPF(message = "CPF, inválido!")
     private String cpf;
 
-    @PastOrPresent
+    @PastOrPresent(message = "Digite uma data válida, não pode ser uma data futura")
     private LocalDate dataAbertura;
 
-    @Positive
-    private BigDecimal saldoInicial;
+    @Positive(message = "São não pode ser negativo")
+    private BigDecimal saldo;
     
     private Boolean ativo = true;
 
