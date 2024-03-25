@@ -1,4 +1,4 @@
-package br.com.fiap.validation;
+package br.com.fiap.bank.validation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

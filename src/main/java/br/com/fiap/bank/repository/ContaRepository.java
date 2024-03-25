@@ -1,4 +1,4 @@
-package br.com.fiap.repository;
+package br.com.fiap.bank.repository;
 
 import java.util.Optional;
 

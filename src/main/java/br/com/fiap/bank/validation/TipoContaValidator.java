@@ -1,4 +1,4 @@
-package br.com.fiap.validation;
+package br.com.fiap.bank.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
