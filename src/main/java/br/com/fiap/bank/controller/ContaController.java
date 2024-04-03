@@ -28,9 +28,9 @@ public class ContaController {
         return service.create(conta);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<Conta> showId(@PathVariable Long id) {
-        return service.showId(id);
+    @GetMapping("{numero}")
+    public ResponseEntity<Conta> showNumero(@PathVariable Long numero) {
+        return service.showNumero(numero);
     }
 
     @GetMapping("/cpf/{cpf}")
@@ -38,29 +38,29 @@ public class ContaController {
         return service.show(cpf);
     }
 
-    @GetMapping("{agencia}/{id}")
-    public ResponseEntity<Conta> show(@PathVariable Long agencia, @PathVariable Long id) {
-        return service.show(agencia, id);
+    @GetMapping("{agencia}/{numero}")
+    public ResponseEntity<Conta> show(@PathVariable Long agencia, @PathVariable Long numero) {
+        return service.show(agencia, numero);
     }
 
-    @DeleteMapping("{id}")
-    public void destroy(@PathVariable Long id) {
-        service.destroy(id);
+    @DeleteMapping("{numero}")
+    public void destroy(@PathVariable Long numero) {
+        service.destroy(numero);
     }
 
-    @PostMapping("{id}/deposito")
-    public Conta depositar(@PathVariable Long id, @RequestBody Movimentacao movimentacao){
-        return service.depositar(id, movimentacao.valor());
+    @PostMapping("{numero}/deposito")
+    public Conta depositar(@PathVariable Long numero, @RequestBody Movimentacao movimentacao){
+        return service.depositar(numero, movimentacao.valor());
     }
 
-    @PostMapping("{id}/saque")
-    public Conta sacar(@PathVariable Long id, @RequestBody Movimentacao movimentacao){
-        return service.saque(id, movimentacao.valor());
+    @PostMapping("{numero}/saque")
+    public Conta sacar(@PathVariable Long numero, @RequestBody Movimentacao movimentacao){
+        return service.saque(numero, movimentacao.valor());
     }
 
-    @PostMapping("{idOrigem}/pix/{idDestino}")
-    public ResponseEntity<Conta> pix(@PathVariable Long idOrigem, @PathVariable Long idDestino, @RequestBody Movimentacao movimentacao){
-        Conta contaAtualizada = service.pix(idOrigem, idDestino, movimentacao.valor());
+    @PostMapping("{numeroOrigem}/pix/{numeroDestino}")
+    public ResponseEntity<Conta> pix(@PathVariable Long numeroOrigem, @PathVariable Long numeroDestino, @RequestBody Movimentacao movimentacao){
+        Conta contaAtualizada = service.pix(numeroOrigem, numeroDestino, movimentacao.valor());
         return ResponseEntity.ok(contaAtualizada);
 }
 

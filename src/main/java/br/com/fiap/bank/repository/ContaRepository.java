@@ -10,9 +10,9 @@ public interface ContaRepository extends JpaRepository<Conta, Long>{
 
     Optional<Conta> findByCpf(String cpf);
 
-    Optional<Conta> findById(Long id);
+    Optional<Conta> findByNumero(Long numero);
 
-    Optional<Conta> findByAgenciaAndId(Long agencia, Long id);
+    Optional<Conta> findByAgenciaAndNumero(Long agencia, Long numero);
 
     
 }

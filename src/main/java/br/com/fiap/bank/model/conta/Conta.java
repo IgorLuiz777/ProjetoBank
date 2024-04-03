@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import org.hibernate.validator.constraints.br.CPF;
 
 import br.com.fiap.bank.validation.TipoConta;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,10 +19,7 @@ import lombok.Data;
 @Entity
 public class Conta {
     
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-
-    @Column(unique = true)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long numero;
 
     @Positive

@@ -25,7 +25,7 @@ public class ContaService {
         return contaRepository.save(conta);
     }
 
-    public ResponseEntity<Conta> showId(Long id) {
+    public ResponseEntity<Conta> showNumero(Long id) {
         return contaRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -37,8 +37,8 @@ public class ContaService {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<Conta> show(Long agencia, Long id) {
-        return contaRepository.findByAgenciaAndId(agencia, id)
+    public ResponseEntity<Conta> show(Long agencia, Long numero) {
+        return contaRepository.findByAgenciaAndNumero(agencia, numero)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -53,8 +53,8 @@ public class ContaService {
                 });
     }
 
-    public Conta depositar(Long id, BigDecimal valor){
-        var conta = contaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Conta não encontrada"));
+    public Conta depositar(Long numero, BigDecimal valor){
+        var conta = contaRepository.findByNumero(numero).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Conta não encontrada"));
         if (valor.compareTo(BigDecimal.ZERO) <= 0){
             throw new ResponseStatusException(BAD_REQUEST, "Valor deve ser maior que zero");
         }
@@ -62,8 +62,8 @@ public class ContaService {
         return contaRepository.save(conta);
     }
 
-    public Conta saque(Long id, BigDecimal valor) {
-        var conta = contaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Conta não encontrada"));
+    public Conta saque(Long numero, BigDecimal valor) {
+        var conta = contaRepository.findById(numero).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Conta não encontrada"));
         if (valor.compareTo(BigDecimal.ZERO) <= 0){
             throw new ResponseStatusException(BAD_REQUEST, "Valor deve ser maior que zero");
         }
@@ -74,10 +74,10 @@ public class ContaService {
         return contaRepository.save(conta);
     }
 
-    public Conta pix(Long idOrigem, Long idDestino, BigDecimal valor) {
-        var contaOrigem = contaRepository.findById(idOrigem)
+    public Conta pix(Long numeroOrigem, Long numeroDestino, BigDecimal valor) {
+        var contaOrigem = contaRepository.findById(numeroOrigem)
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Conta de origem não encontrada"));
-        var contaDestino = contaRepository.findById(idDestino)
+        var contaDestino = contaRepository.findById(numeroDestino)
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Conta de destino não encontrada"));
         if (valor.compareTo(BigDecimal.ZERO) <= 0){
             throw new ResponseStatusException(BAD_REQUEST, "Valor deve ser maior que zero");

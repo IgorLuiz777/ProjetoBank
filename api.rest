@@ -7,7 +7,6 @@ POST http://localhost:8080/conta
 Content-Type: application/json
 
 {
-    "numero": 42342442,
     "agencia": 313313213131,
     "nome": "Renato Cariani",
     "cpf": "555.874.950-43",
@@ -22,7 +21,6 @@ POST http://localhost:8080/conta
 Content-Type: application/json
 
 {
-    "numero": 543535333,
     "agencia": 12321343423,
     "nome": "Renato Trezoitão",
     "cpf": "941.218.550-27",
