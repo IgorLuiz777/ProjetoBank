@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import br.com.fiap.bank.model.conta.Conta;
+import br.com.fiap.bank.model.conta.DadosListagemConta;
 import br.com.fiap.bank.repository.ContaRepository;
 
 @Service
@@ -25,22 +26,22 @@ public class ContaService {
         return contaRepository.save(conta);
     }
 
-    public ResponseEntity<Conta> showNumero(Long id) {
-        return contaRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<DadosListagemConta> showNumero(Long numero) {
+        Conta conta = contaRepository.findById(numero)
+                    .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "NOT FOUND"));
+        return ResponseEntity.ok(new DadosListagemConta(conta));
     }
 
-    public ResponseEntity<Conta> show(String cpf) {
-        return contaRepository.findByCpf(cpf)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<DadosListagemConta> showCpf(String cpf) {
+        Conta conta = contaRepository.findByCpf(cpf)
+                    .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "NOT FOUND"));
+        return ResponseEntity.ok(new DadosListagemConta(conta));
     }
 
-    public ResponseEntity<Conta> show(Long agencia, Long numero) {
-        return contaRepository.findByAgenciaAndNumero(agencia, numero)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<DadosListagemConta> showAgenciaNumero(Long agencia, Long numero) {
+        Conta conta =  contaRepository.findByAgenciaAndNumero(agencia, numero)
+                    .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "NOT FOUND"));
+        return ResponseEntity.ok(new DadosListagemConta(conta));
     }
 
     public void destroy(Long id) {

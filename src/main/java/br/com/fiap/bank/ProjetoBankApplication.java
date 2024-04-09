@@ -17,7 +17,7 @@ public class ProjetoBankApplication {
 	@RequestMapping
 	@ResponseBody
 	public String projectName(){
-		return "Projeto Bank " + "Igor Luiz e Leonardo Dourado";
+		return "Projeto Bank";
 	}
 
 }

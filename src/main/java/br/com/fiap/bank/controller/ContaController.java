@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.bank.model.conta.Conta;
+import br.com.fiap.bank.model.conta.DadosListagemConta;
 import br.com.fiap.bank.model.movimentacao.Movimentacao;
 import br.com.fiap.bank.service.ContaService;
 
@@ -29,18 +30,18 @@ public class ContaController {
     }
 
     @GetMapping("{numero}")
-    public ResponseEntity<Conta> showNumero(@PathVariable Long numero) {
+    public ResponseEntity<DadosListagemConta> showNumero(@PathVariable Long numero) {
         return service.showNumero(numero);
     }
 
     @GetMapping("/cpf/{cpf}")
-    public ResponseEntity<Conta> show(@PathVariable String cpf) {
-        return service.show(cpf);
+    public ResponseEntity<DadosListagemConta> show(@PathVariable String cpf) {
+        return service.showCpf(cpf);
     }
 
     @GetMapping("{agencia}/{numero}")
-    public ResponseEntity<Conta> show(@PathVariable Long agencia, @PathVariable Long numero) {
-        return service.show(agencia, numero);
+    public ResponseEntity<DadosListagemConta> show(@PathVariable Long agencia, @PathVariable Long numero) {
+        return service.showAgenciaNumero(agencia, numero);
     }
 
     @DeleteMapping("{numero}")
